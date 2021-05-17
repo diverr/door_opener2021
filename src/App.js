@@ -9,7 +9,7 @@ import Global from './Global';
 
 
 function App() {
-    const [version, setVersion] = useState('1.3.0')
+    const [version, setVersion] = useState('1.3.1')
 
     const key = localStorage.getItem("key") ? localStorage.getItem("key") : null;
 
