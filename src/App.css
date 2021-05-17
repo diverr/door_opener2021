@@ -1,14 +1,19 @@
 .App {
-  width: 100%;
-  height: 100%;
   text-align: center;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
 }
 
 .version {
   color: lightgray;
   font-size: .8em;
+}
+
+a {
+  color: lightgray;
+  text-decoration: none;
 }
