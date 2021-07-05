@@ -21,8 +21,8 @@ export default function Button({params}) {
         if (opening) return;
         opening = true;
 
-        // const url = `${Global.serviceUrl}/${key}`;
-        const url = `${Global.serviceUrl}/hola`;
+        const url = `${Global.serviceUrl}/${key}`;
+        // const url = `${Global.serviceUrl}/hola`;
 
         setOpacity(0.2);
 
