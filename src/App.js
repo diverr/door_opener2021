@@ -1,15 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Button from "./Button";
-import {Route, Link, useLocation} from 'wouter';
+import {Link, Route, useLocation} from 'wouter';
 import Form from "./Form";
-import {ToastContainer, toast} from 'react-toastify';
+import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Global from './Global';
 
 
 function App() {
-    const [version, setVersion] = useState('1.3.1')
+    const [version, setVersion] = useState('1.3.2')
 
     const key = localStorage.getItem("key") ? localStorage.getItem("key") : null;
 
