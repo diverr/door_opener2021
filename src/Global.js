@@ -1,5 +1,5 @@
 const Global = {
-    serviceUrl: "https://home.davidsantiago.net"
-}
+  serviceUrl: "https://home.davidsantiago.net",
+};
 
 export default Global;
