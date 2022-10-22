@@ -12,12 +12,12 @@ export default function Button() {
   const [opacity, setOpacity] = useState(1);
   const [opening, setOpening] = useState(false);
 
-  // const url = `${Global.serviceUrl}/${secret}`;
-  // WARNING! change before sending to production
-  const url = `${Global.serviceUrl}`;
-
   const secret = localStorage.getItem('secret') ?? null;
   const user = localStorage.getItem('user') ?? null;
+
+  const url = `${Global.serviceUrl}/${secret}`;
+  // WARNING! change before sending to production
+  // const url = `${Global.serviceUrl}`;
 
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
@@ -60,8 +60,9 @@ export default function Button() {
         coords.longitude
       );
 
-      if (user === 'Guadalupe' && distance > 0.5) {
-        toast.error('Lo siento Guadalupe, no estás en casa', {
+      // TODO: check user type
+      if (distance > 0.5) {
+        toast.error('Lo siento, no estás en casa', {
           autoClose: 2000,
         });
         setOpening(false);
