@@ -1,5 +1,5 @@
 const Global = {
-  serviceUrl: "https://home.davidsantiago.net",
+  serviceUrl: process.env.REACT_APP_SERVICE_URL,
 };
 
 export default Global;

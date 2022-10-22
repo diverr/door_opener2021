@@ -1,49 +1,50 @@
-import React, { useState } from "react";
-import remote from "./assets/img/remote.png";
-import "./Button.css";
-import Global from "./Global";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useDoubleTap } from "use-double-tap";
+import React, { useState } from 'react'
+import remote from './assets/img/remote.png'
+import './Button.css'
+import Global from './Global'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import { useDoubleTap } from 'use-double-tap'
+import axios from 'axios'
 
-export default function Button({ params }) {
-  const [opacity, setOpacity] = useState(1);
+export default function Button() {
+  const [opacity, setOpacity] = useState(1)
+  const [opening, setOpening] = useState(false)
 
-  const { key } = params;
-  let opening = false;
+  const secret = localStorage.getItem('secret') ?? null
+  const user = localStorage.getItem('user') ?? null
 
-  const bind = useDoubleTap((e) => {
-    open();
-  });
+  const open = async () => {
+    if (opening) return
+    setOpening(true)
 
-  const open = () => {
-    if (opening) return;
-    opening = true;
+    // const url = `${Global.serviceUrl}/${secret}`;
+    // WARNING! change before sending to production
+    const url = `${Global.serviceUrl}`
 
-    const url = `${Global.serviceUrl}/${key}`;
-    // const url = `${Global.serviceUrl}/hola`;
+    setOpacity(0.2)
 
-    setOpacity(0.2);
-
-    toast.info("Abriendo puerta... ", {
+    toast.info('Abriendo puerta... ', {
       autoClose: 2000,
-    });
-    fetch(url)
-      .then((resp) => {
-        toast.success("Puerta abierta", {
-          autoClose: 2000,
-        });
-        opening = false;
-        setOpacity(1);
+    })
+
+    try {
+      await axios.get(url)
+
+      const welcome = user === 'Papá' ? 'bienvenido' : 'bienvenida'
+
+      toast.success(`Puerta abierta, ${welcome} a casa ${user}`, {
+        autoClose: 2000,
       })
-      .catch((error) => {
-        toast.error("Error abriendo la puerta", {
-          autoClose: 2000,
-        });
-        opening = false;
-        setOpacity(1);
-      });
-  };
+    } catch (e) {
+      toast.error(`Error abriendo la puerta: ${e}`, { autoClose: 2000 })
+    } finally {
+      setOpacity(1)
+      setOpening(false)
+    }
+  }
+
+  const bind = useDoubleTap(open)
 
   return (
     <div>
@@ -55,5 +56,5 @@ export default function Button({ params }) {
         {...bind}
       />
     </div>
-  );
+  )
 }
