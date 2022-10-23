@@ -15,10 +15,10 @@ export default function Form() {
   const send = () => {
     if (!key || key === '') return;
 
-    const userId = key.split('#')[1];
+    const userId = key.slice(-3);
 
     localStorage.setItem('secret', key);
-    localStorage.setItem('user', users[userId]);
+    localStorage.setItem('user', users[userId] ?? 'Desconocido');
 
     setLocation('/button');
   };
