@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import Button from './Button';
+import Reset from './Reset';
 import { Link, Route, useLocation } from 'wouter';
 import Form from './Form';
 import { toast, ToastContainer } from 'react-toastify';
@@ -39,6 +40,7 @@ function App() {
     <div className="App">
       <Route component={Form} path="/" />
       <Route component={Button} path="/button" />
+      <Route component={Reset} path="/reset" />
       <br />
       <br />
       <div className="version">
