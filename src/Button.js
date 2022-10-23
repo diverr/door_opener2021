@@ -12,10 +12,10 @@ export default function Button() {
   const [opacity, setOpacity] = useState(1);
   const [opening, setOpening] = useState(false);
 
-  const secret = localStorage.getItem('secret') ?? null;
+  const key = localStorage.getItem('key') ?? null;
   const user = localStorage.getItem('user') ?? null;
 
-  const url = `${Global.serviceUrl}/${secret}`;
+  const url = `${Global.serviceUrl}/${key}`;
   // WARNING! change before sending to production
   // const url = `${Global.serviceUrl}`;
 

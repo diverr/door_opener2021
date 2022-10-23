@@ -12,7 +12,7 @@ function App() {
   const version = process.env.REACT_APP_VERSION;
   console.log('version', version);
 
-  const secret = localStorage.getItem('secret') ?? null;
+  const key = localStorage.getItem('key') ?? null;
 
   const [location, setLocation] = useLocation();
 
@@ -31,7 +31,7 @@ function App() {
       });
   }, []);
 
-  if (secret) {
+  if (key) {
     setLocation('/button');
   }
 

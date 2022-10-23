@@ -1,27 +1,26 @@
-import React, { useState } from "react";
-import { useLocation } from "wouter";
-import "./Form.css";
+import React, { useState } from 'react';
+import { useLocation } from 'wouter';
+import './Form.css';
 
 export default function Form() {
-  const [key, setKey] = useState("");
+  const [key, setKey] = useState('');
   const [location, setLocation] = useLocation();
 
   const users = {
-    "001": "Papá",
-    "002": "Mamá",
-    "003": "Guadalupe",
+    '001': 'Papá',
+    '002': 'Mamá',
+    '003': 'Guadalupe',
   };
 
   const send = () => {
-    if (!key || key === "") return;
+    if (!key || key === '') return;
 
-    const secret = key.split("#")[0];
-    const userId = key.split("#")[1];
+    const userId = key.split('#')[1];
 
-    localStorage.setItem("secret", secret);
-    localStorage.setItem("user", users[userId]);
+    localStorage.setItem('key', key);
+    localStorage.setItem('user', users[userId]);
 
-    setLocation("/button/" + secret);
+    setLocation('/button');
   };
 
   return (
