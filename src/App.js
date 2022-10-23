@@ -44,7 +44,7 @@ function App() {
       <br />
       <br />
       <div className="version">
-        <Link to="/">{version}</Link>
+        <Link to="/reset">{version}</Link>
       </div>
       <ToastContainer newestOnTop />
     </div>
