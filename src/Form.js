@@ -17,7 +17,7 @@ export default function Form() {
 
     const userId = key.split('#')[1];
 
-    localStorage.setItem('key', key);
+    localStorage.setItem('secret', key);
     localStorage.setItem('user', users[userId]);
 
     setLocation('/button');
