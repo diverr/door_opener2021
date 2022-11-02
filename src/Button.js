@@ -71,7 +71,7 @@ export default function Button() {
           autoClose: 2000,
         });
       } else {
-        toast.error('Error de comunicación', {
+        toast.error(`Error de comunicación: ${e}`, {
           autoClose: 2000,
         });
       }
