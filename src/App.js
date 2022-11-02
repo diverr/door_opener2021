@@ -5,20 +5,21 @@ import { Route, useLocation } from 'wouter';
 import Form from './Form';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Global from './Global';
 import axios from 'axios';
 
 function App() {
   const version = process.env.REACT_APP_VERSION;
   console.log('version', version);
 
-  const secret = localStorage.getItem('secret') ?? null;
+  const key = localStorage.getItem('key') ?? null;
 
   const [location, setLocation] = useLocation();
 
+  console.log(process.env.REACT_APP_SERVICE_URL);
+
   useEffect(() => {
     axios
-      .get(Global.serviceUrl)
+      .get(process.env.REACT_APP_SERVICE_URL)
       .then(() => {
         toast.success('Servicio preparado', {
           autoClose: 2000,
@@ -31,7 +32,7 @@ function App() {
       });
   }, []);
 
-  if (secret) {
+  if (key) {
     setLocation('/button');
   }
 

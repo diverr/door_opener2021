@@ -4,21 +4,14 @@ import './Form.css';
 
 export default function Form() {
   const [key, setKey] = useState('');
+  const [user, setUser] = useState('');
   const [location, setLocation] = useLocation();
 
-  const users = {
-    '001': 'Papá',
-    '002': 'Mamá',
-    '003': 'Guadalupe',
-  };
-
   const send = () => {
-    if (!key || key === '') return;
+    if (!key || key === '' || !user || user === '') return;
 
-    const userId = key.slice(-3);
-
-    localStorage.setItem('secret', key);
-    localStorage.setItem('user', users[userId] ?? 'Desconocido');
+    localStorage.setItem('key', key);
+    localStorage.setItem('user', user);
 
     setLocation('/button');
   };
@@ -27,8 +20,15 @@ export default function Form() {
     <div className="form">
       <input
         type="text"
+        id="user"
+        placeholder="Nombre"
+        onChange={(e) => setUser(e.target.value)}
+      />
+      <br />
+      <input
+        type="text"
         id="key"
-        placeholder="Introduce llave"
+        placeholder="Llave"
         onChange={(e) => setKey(e.target.value)}
       />
       <br />
