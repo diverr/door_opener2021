@@ -66,7 +66,15 @@ export default function Button() {
         autoClose: 2000,
       });
     } catch (e) {
-      toast.error(`Error abriendo la puerta: ${e}`, { autoClose: 2000 });
+      if (e.response?.status === 401) {
+        toast.error('No autorizado', {
+          autoClose: 2000,
+        });
+      } else {
+        toast.error('Error de comunicación', {
+          autoClose: 2000,
+        });
+      }
     } finally {
       setOpacity(1);
       setOpening(false);
