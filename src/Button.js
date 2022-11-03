@@ -1,14 +1,17 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import remote from './assets/img/remote.png';
-import './Button.css';
+import { useGeolocated } from 'react-geolocated';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDoubleTap } from 'use-double-tap';
-import axios from 'axios';
-import { useGeolocated } from 'react-geolocated';
+import remote from './assets/img/remote.png';
+import './Button.css';
 import { getDistanceFromLatLonInKm } from './util';
 
 export default function Button() {
+  const version = process.env.REACT_APP_VERSION;
+
   const [opacity, setOpacity] = useState(1);
   const [opening, setOpening] = useState(false);
 
@@ -81,7 +84,18 @@ export default function Button() {
     }
   };
 
-  const bind = useDoubleTap(open);
+  const navigate = useNavigate();
+
+  const reset = () => {
+    localStorage.clear();
+    toast.success('Credenciales reseteadas', {
+      autoClose: 2000,
+    });
+    navigate('/');
+  };
+
+  const handleOpen = useDoubleTap(open);
+  const handleReset = useDoubleTap(reset);
 
   return (
     <div>
@@ -90,8 +104,14 @@ export default function Button() {
         className="button"
         alt="Abrir"
         style={{ opacity: opacity }}
-        {...bind}
+        {...handleOpen}
       />
+      <br />
+      <br />
+      <br />
+      <div className="version" {...handleReset}>
+        {version}
+      </div>
     </div>
   );
 }
